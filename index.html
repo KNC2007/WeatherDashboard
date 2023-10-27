@@ -3,39 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/style.css" />
     <title>Weather Dashboard</title>
 </head>
+
 <body>
-    <header>
+    <header class="navbar navbar-expand-lg custom-navbar">
         <h1>Weather Dashboard</h1>
     </header>
 
-    <main>
-        <!-- search for a city input and saved recent searches in ul -->
-        <section>
-            <h3>Search for a City:</h3>
-            <input>
-            <button>Search</button>
-            <ul></ul>
-        </section>
+    <main class="py-5">
+        <div class="container">        
+            <div class="row align-items-left">
+                <!-- search for a city input and saved recent searches in ul -->
+                <section class="col-12 col-md-3 text-start">
+                    <div class="search-title">
+                        <h3>Search for a City:</h3>
+                    </div>
+                    <div class="input-area">
+                        <input
+                            type="text"
+                            id="city-input"
+                            placeholder="Enter name of city..."/>
+                    </div>
+                    <div class="button-area">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                    <!-- stores recent searches in ul -->
+                    <div>
+                        <ul></ul>
+                    </div>
+                </section>
 
-        <!-- section reading out current weather for that city -->
-        <section>
-            <div>
-                <h3>Currently in: </h3>
+                
+                <section class="col-12 col-md-9">
+                    <!-- section reading out current weather for that city -->
+                    <div>
+                        <h3>Currently in: </h3>
+                    </div>
+
+                    <!-- 5 day forecast section -->
+                    <div>
+                        <h3>5-Day Forecast:</h3>
+                    </div>
+                </section>
             </div>
-        </section>
-
-        <!-- 5 day forecast section -->
-        <section>
-            <div>
-                <h3>5-Day Forecast:</h3>
-
-            </div>
-        </section>
-
-
+        </div>
     </main>
-    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./assets/script.js"></script> 
 </body>
 </html>
