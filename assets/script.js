@@ -9,11 +9,14 @@ let stringDate = dayjs().format('M/D/YYYY');
 
 console.log(stringDate)
 
-// searchInput.value
 
+// 'Philadelphia'
 
 function getApiCurrentWeather() {
-    fetch(requestUrlCurrentWeather + 'Philadelphia' + ApiKey)
+    var searchInput = $('#city-input');
+    console.log(searchInput.val())
+    fetch(requestUrlCurrentWeather + searchInput.val() + ApiKey)
+    
     .then(function (response) {
         return response.json();
     })
@@ -23,7 +26,7 @@ function getApiCurrentWeather() {
             $(currentCityHeader).text("Currently in: " + data.name);
             // currentCityHeader.appendChild(createCityHeader);
 
-            $(currentCityHeader).img("https://openweathermap.org/img/wn/" + data.weather[0].icon + "2x.png")
+            $(".currentWeatherIcon").attr("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");
 
             $('#date').text('Date: ' + stringDate);
 
@@ -35,13 +38,17 @@ function getApiCurrentWeather() {
 
             $('#humidity').append(data.main.humidity + "%");
             // currentWeatherConditions.appendChild(listItemCurrentHumidity);
+
+            getApiFiveDay();
         }
     // }
     )
 }
 
 function getApiFiveDay() {
-    fetch(requestUrlFiveDay + 'Philadelphia' + ApiKey)
+    var searchInput = $('#city-input');
+    console.log(searchInput.val());
+    fetch(requestUrlFiveDay + searchInput.val() + ApiKey)
     .then(function (response) {
         return response.json();
     })
@@ -49,38 +56,44 @@ function getApiFiveDay() {
         console.log(data);
         // for (let i = 0; i < data.length; index++) {
             // day 1 of 5 day forecast
-            $('#day1').text(data.list[1].dt_txt);
-            $('#day1').append(Math.floor(data.list[1].main.temp) + "°F");
-            $('#day1').append(Math.floor(data.list[1].wind.speed) + " MPH");
-            $('#day1').append(data.list[1].main.humidity + "%");
+            $(".day1WeatherIcon").attr("src", "https://openweathermap.org/img/wn/" + data.list[1].weather[0].icon + "@2x.png");
+            $('#day1').text("Date: " + data.list[1].dt_txt);
+            $('#day1').append("<br>" + "Temperature: " + Math.floor(data.list[1].main.temp) + "°F");
+            $('#day1').append("<br>" + "Wind: " + Math.floor(data.list[1].wind.speed) + " MPH");
+            $('#day1').append("<br>" + "Humidity: " + data.list[1].main.humidity + "%");
 
             // day 2 of 5 day forecast
+            $(".day2WeatherIcon").attr("src", "https://openweathermap.org/img/wn/" + data.list[2].weather[0].icon + "@2x.png");
             $('#day2').text(data.list[2].dt_txt);
-            $('#day2').append(Math.floor(data.list[2].main.temp) + "°F");
-            $('#day2').append(Math.floor(data.list[2].wind.speed) + " MPH");
-            $('#day2').append(data.list[2].main.humidity + "%");
+            $('#day2').append("<br>" + "Temperature: " + Math.floor(data.list[2].main.temp) + "°F");
+            $('#day2').append("<br>" + "Wind: " + Math.floor(data.list[2].wind.speed) + " MPH");
+            $('#day2').append("<br>" + "Humidity: " + data.list[2].main.humidity + "%");
 
             // day 3 of 5 day forecast
+            $(".day3WeatherIcon").attr("src", "https://openweathermap.org/img/wn/" + data.list[3].weather[0].icon + "@2x.png");
             $('#day3').text(data.list[3].dt_txt);
-            $('#day3').append(Math.floor(data.list[3].main.temp) + "°F");
-            $('#day3').append(Math.floor(data.list[3].wind.speed) + " MPH");
-            $('#day3').append(data.list[3].main.humidity + "%");
+            $('#day3').append("<br>" + "Temperature: " + Math.floor(data.list[3].main.temp) + "°F");
+            $('#day3').append("<br>" + "Wind: " + Math.floor(data.list[3].wind.speed) + " MPH");
+            $('#day3').append("<br>" + "Humidity: " + data.list[3].main.humidity + "%");
 
             // day 4 of 5 day forecast
+            $(".day4WeatherIcon").attr("src", "https://openweathermap.org/img/wn/" + data.list[4].weather[0].icon + "@2x.png");
             $('#day4').text(data.list[4].dt_txt);
-            $('#day4').append(Math.floor(data.list[4].main.temp) + "°F");
-            $('#day4').append(Math.floor(data.list[4].wind.speed) + " MPH");
-            $('#day4').append(data.list[4].main.humidity + "%");
+            $('#day4').append("<br>" + "Temperature: " + Math.floor(data.list[4].main.temp) + "°F");
+            $('#day4').append("<br>" + "Wind: " + Math.floor(data.list[4].wind.speed) + " MPH");
+            $('#day4').append("<br>" + "Humidity: " + data.list[4].main.humidity + "%");
 
             // day 5 of 5 day forecast
+            $(".day5WeatherIcon").attr("src", "https://openweathermap.org/img/wn/" + data.list[5].weather[0].icon + "@2x.png");
             $('#day5').text(data.list[5].dt_txt);
-            $('#day5').append(Math.floor(data.list[5].main.temp) + "°F");
-            $('#day5').append(Math.floor(data.list[5].wind.speed) + " MPH");
-            $('#day5').append(data.list[5].main.humidity + "%");
+            $('#day5').append("<br>" + "Temperature: " + Math.floor(data.list[5].main.temp) + "°F");
+            $('#day5').append("<br>" + "Wind: " + Math.floor(data.list[5].wind.speed) + " MPH");
+            $('#day5').append("<br>" + "Humidity: " + data.list[5].main.humidity + "%");
         }
     )
 }
 
-getApiCurrentWeather()
-getApiFiveDay()
-// $(searchCityButton).onclick = getApi;
+// getApiCurrentWeather()
+// getApiFiveDay()
+searchCityButton.on("click", getApiCurrentWeather);
+// $(searchCityButton).onclick = getApiFiveDay

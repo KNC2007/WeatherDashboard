@@ -42,6 +42,7 @@
                     <!-- section reading out current weather for that city -->
                     <div class="currentCard">
                         <h3 class="currentWeatherCity">Currently in: </h3>
+                            <img class="currentWeatherIcon">
                             <ul>
                                 <li id="date"></li>
                                 <li id="temp">Temperature: </li>
@@ -52,23 +53,40 @@
                 
 
                     <!-- 5 day forecast section -->
-                    <div>
-                        <h3>5-Day Forecast:</h3>
-                            <section class="weatherCard">
-                                <li id="day1"></li>
-                            </section>
-                            <section class="weatherCard">
-                                <li id="day2"></li>
-                            </section>
-                            <section class="weatherCard">
-                                <li id="day3"></li>
-                            </section>
-                            <section class="weatherCard">
-                                <li id="day4"></li>
-                            </section>
-                            <section class="weatherCard">
-                                <li id="day5"></li>
-                            </section>
+                    <div class="container">
+                        <div class="row">
+                            <h3>5-Day Forecast:</h3>
+                                <div class="col">
+                                    <section class="weatherCard">
+                                        <img class="day1WeatherIcon">
+                                        <ul id="day1"></ul>
+                                    </section>    
+                                </div>
+                                <div class="col">   
+                                    <section class="weatherCard">
+                                        <img class="day2WeatherIcon">
+                                        <ul id="day2"></ul>
+                                    </section>
+                                </div>
+                                <div class="col">   
+                                    <section class="weatherCard">
+                                        <img class="day3WeatherIcon">
+                                        <ul id="day3"></ul>
+                                    </section>
+                                </div>
+                                <div class="col">   
+                                    <section class="weatherCard">
+                                        <img class="day4WeatherIcon">
+                                        <ul id="day4"></ul>
+                                    </section>
+                                </div>
+                                <div class="col">   
+                                    <section class="weatherCard">
+                                        <img class="day5WeatherIcon">
+                                        <ul id="day5"></ul>
+                                    </section>
+                                </div>    
+                        </div>
                     </div>
                 </section>
             </div>

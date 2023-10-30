@@ -49,5 +49,6 @@ li {
     background: blue;
     color: white;
     padding: 5px;
-    flex: wrap;
+    margin: 2px;
+
 }
