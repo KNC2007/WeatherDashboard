@@ -34,6 +34,20 @@ input{
     padding-top: 20px;
 }
 
-.currentWeather {
-    
+.currentCard {
+    border: black 2px solid;
+    padding: 5px;
+}
+
+li {
+    list-style-type: none;
+    padding: 8px;
+}
+
+.weatherCard {
+    border: black 2px solid;
+    background: blue;
+    color: white;
+    padding: 5px;
+    flex: wrap;
 }

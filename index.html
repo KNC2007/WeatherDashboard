@@ -33,21 +33,42 @@
                     </div>
                     <!-- stores recent searches in ul -->
                     <div>
-                        <!-- <ul></ul> -->
+                        <ul></ul>
                     </div>
                 </section>
 
                 
                 <section class="col-12 col-md-9">
                     <!-- section reading out current weather for that city -->
-                    <div>
+                    <div class="currentCard">
                         <h3 class="currentWeatherCity">Currently in: </h3>
-                            <ul></ul>
+                            <ul>
+                                <li id="date"></li>
+                                <li id="temp">Temperature: </li>
+                                <li id="wind">Wind: </li>
+                                <li id="humidity">Humidity: </li>
+                            </ul>
                     </div>
+                
 
                     <!-- 5 day forecast section -->
                     <div>
                         <h3>5-Day Forecast:</h3>
+                            <section class="weatherCard">
+                                <li id="day1"></li>
+                            </section>
+                            <section class="weatherCard">
+                                <li id="day2"></li>
+                            </section>
+                            <section class="weatherCard">
+                                <li id="day3"></li>
+                            </section>
+                            <section class="weatherCard">
+                                <li id="day4"></li>
+                            </section>
+                            <section class="weatherCard">
+                                <li id="day5"></li>
+                            </section>
                     </div>
                 </section>
             </div>
@@ -55,6 +76,7 @@
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script><script>dayjs().format()</script>
     <script src="./assets/script.js"></script> 
 </body>
 </html>
