@@ -15,14 +15,19 @@ var cityHistoryDisplayEl = $('#citySearchedList');
 var cities = [];
 var cityForm = $('#city-form');
 
+
 console.log(stringDate.format("MM-DD-YYYY"))
 console.log(stringDate5.format("MM-DD-YYYY"))
 
 
-function getApiCurrentWeather() {
+function getApiCurrentWeather(cityname) {
+    $('#temp').html('');
+    $('#wind').html('');
+    $('#humidity').html('');
     var searchInput = $('#city-input');
-    console.log(searchInput.val())
-    fetch(requestUrlCurrentWeather + searchInput.val() + ApiKey)
+    var cityName = searchInput.val() || cityname;
+    console.log(cityname)
+    fetch(requestUrlCurrentWeather + cityName + ApiKey)
     
     .then(function (response) {
         return response.json();
@@ -36,21 +41,22 @@ function getApiCurrentWeather() {
 
             $('#date').text('Date: ' + stringDate.format("MM-DD-YYYY"));
 
-            $('#temp').append(Math.floor(data.main.temp) + "°F");
+            $('#temp').append("Temperature: " + Math.floor(data.main.temp) + "°F");
 
-            $('#wind').append(Math.floor(data.wind.speed) + " MPH");
+            $('#wind').append("Wind: " + Math.floor(data.wind.speed) + " MPH");
 
-            $('#humidity').append(data.main.humidity + "%");
+            $('#humidity').append("Humidity: " + data.main.humidity + "%");
 
-            getApiFiveDay();
+            getApiFiveDay(cityName);
         }
     )
 }
 
-function getApiFiveDay() {
+function getApiFiveDay(cityname) {
     var searchInput = $('#city-input');
-    console.log(searchInput.val());
-    fetch(requestUrlFiveDay + searchInput.val() + ApiKey)
+    var cityName = searchInput.val() || cityname;
+    console.log(cityname);
+    fetch(requestUrlFiveDay + cityName + ApiKey)
     .then(function (response) {
         return response.json();
     })
@@ -123,7 +129,7 @@ function printCityHistory() {
     event.preventDefault();
     console.log(event);
     console.log(event.target);
-    getApiCurrentWeather(searchInput.val());
+    // getApiCurrentWeather(searchInput.val());
     cities.push(searchInput.val());
     if (cities.length > 5){
         cities.shift();
@@ -138,7 +144,8 @@ function printCityHistory() {
   function handleButtonClick(event){
     event.preventDefault();
     console.log(this);
-    var cityName = this.attr("data-city");
+    var cityName = this.getAttribute("data-city");
+    console.log(cityName);
       getApiCurrentWeather(cityName);
     }
 
