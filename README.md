@@ -13,3 +13,4 @@ Click here to visit the deployed website: https://knc2007.github.io/WeatherDashb
 
 ## Resources
 - The following websites were used as reference for Javascript and jQuery and layouts: https://www.w3schools.com/ and https://developer.mozilla.org/en-US/ and https://htmlcheatsheet.com/jquery/ and https://day.js.org/en/ and https://getbootstrap.com/.
+- I also had support from tutor John Coakley. He helped me with local storage and organizing function calls.
