@@ -16,24 +16,28 @@ var cities = [];
 var cityForm = $('#city-form');
 
 
-console.log(stringDate.format("MM-DD-YYYY"))
-console.log(stringDate5.format("MM-DD-YYYY"))
+// console.log(stringDate.format("MM-DD-YYYY"))
+// console.log(stringDate5.format("MM-DD-YYYY"))
+
+function getCityAndSearch(){
+    var cityName = searchInput.val();
+    getApiCurrentWeather(cityName);
+}
 
 
-function getApiCurrentWeather(cityname) {
+
+function getApiCurrentWeather(cityName) {
     $('#temp').html('');
     $('#wind').html('');
     $('#humidity').html('');
-    var searchInput = $('#city-input');
-    var cityName = searchInput.val() || cityname;
-    console.log(cityname)
+    // console.log(cityname)
+    // console.log('caps', cityName, cityname);
     fetch(requestUrlCurrentWeather + cityName + ApiKey)
-    
     .then(function (response) {
         return response.json();
     })
     .then(function (data){
-        console.log(data);
+        // console.log(data);
         // current weather data
             $(currentCityHeader).text("Currently in: " + data.name);
 
@@ -52,16 +56,13 @@ function getApiCurrentWeather(cityname) {
     )
 }
 
-function getApiFiveDay(cityname) {
-    var searchInput = $('#city-input');
-    var cityName = searchInput.val() || cityname;
-    console.log(cityname);
+function getApiFiveDay(cityName) {
     fetch(requestUrlFiveDay + cityName + ApiKey)
     .then(function (response) {
         return response.json();
     })
     .then(function (data){
-        console.log(data);
+        // console.log(data);
             // day 1 of 5 day forecast
             $(".day1WeatherIcon").attr("src", "https://openweathermap.org/img/wn/" + data.list[1].weather[0].icon + "@2x.png");
             $('#day1').text("Date: " + stringDate1.format("MM-DD-YYYY"));
@@ -106,7 +107,7 @@ function getApiFiveDay(cityname) {
 
 if(localStorage.getItem('citySearch')) {
     cities = JSON.parse(localStorage.getItem('citySearch'));
-    console.log(cities);
+    // console.log(cities);
     printCityHistory();
 }
 
@@ -114,7 +115,7 @@ function printCityHistory() {
     cityHistoryDisplayEl.html('');
     for (var i = 0; i < cities.length; i++) {
         city = cities[i];
-        console.log(city);
+        // console.log(city);
         var listEl = $('<li>');
         var listBtns = $('<button>');
         listBtns.attr("data-city", city);
@@ -127,8 +128,8 @@ function printCityHistory() {
 
   function captureCityName(event){
     event.preventDefault();
-    console.log(event);
-    console.log(event.target);
+    // console.log(event);
+    // console.log(event.target);
     // getApiCurrentWeather(searchInput.val());
     cities.push(searchInput.val());
     if (cities.length > 5){
@@ -143,13 +144,13 @@ function printCityHistory() {
 
   function handleButtonClick(event){
     event.preventDefault();
-    console.log(this);
+    // console.log(this);
     var cityName = this.getAttribute("data-city");
     console.log(cityName);
       getApiCurrentWeather(cityName);
     }
 
 
-searchCityButton.on("click", getApiCurrentWeather);
+searchCityButton.on("click", getCityAndSearch);
 
 cityHistoryDisplayEl.on("click", "button", handleButtonClick)
